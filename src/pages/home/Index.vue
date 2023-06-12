@@ -5,7 +5,21 @@
 </template>
 
 <script>
-export default {};
+import getCurrentUser from "../../api/user";
+export default {
+  name: "Index",
+  data() {
+    return {};
+  },
+  created() {
+    this.test();
+  },
+  methods: {
+    test() {
+      getCurrentUser;
+    },
+  },
+};
 </script>
 
 <style scoped></style>
