@@ -3,7 +3,7 @@
     <div class="login-form">
       <div class="login-form-left">
         <div>Welcome</div>
-        <div>后台管理系统</div>
+        <div>{{ appTitle }}</div>
       </div>
       <div class="login-form-right">
         <a-input placeholder="Input account" size="large" class="login-form-input">
@@ -21,7 +21,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Login",
+  data() {
+    return {
+      appTitle: process.env.VUE_APP_TITLE,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -30,7 +37,7 @@ export default {};
   background: no-repeat url(../../assets/login_bg.jpg);
   background-size: 100% 100%;
   background-attachment: fixed;
-  height: 680px;
+  height: 740px;
 }
 .login-form {
   display: flex;
