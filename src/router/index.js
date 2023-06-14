@@ -5,12 +5,13 @@ import Login from "@/pages/user/Login.vue";
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: "history",
   routes: [
     {
-      path: "/",
+      path: "/index",
       component: Index,
+      // redirect: "/user/login",
     },
     {
       path: "/user/login",
@@ -18,3 +19,24 @@ export default new VueRouter({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  let userLoginStatus = sessionStorage.getItem("userLoginStatus");
+
+  if (userLoginStatus && to.path === "/user/login") {
+    next("/index");
+    return;
+  }
+
+  if (to.path !== "/user/login") {
+    if (userLoginStatus) {
+      next();
+    } else {
+      next("/user/login");
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;

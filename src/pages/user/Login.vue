@@ -6,13 +6,29 @@
         <div>{{ appTitle }}</div>
       </div>
       <div class="login-form-right">
-        <a-input placeholder="Input account" size="large" class="login-form-input">
+        <a-input
+          placeholder="Input account"
+          size="large"
+          class="login-form-input"
+          v-model="username"
+        >
           <a-icon slot="prefix" type="user" />
         </a-input>
-        <a-input-password placeholder="Input password" size="large" class="login-form-input">
+        <a-input-password
+          placeholder="Input password"
+          size="large"
+          class="login-form-input"
+          v-model="password"
+        >
           <a-icon slot="prefix" type="lock" />
         </a-input-password>
-        <a-button type="primary" shape="round" size="large" class="login-form-button">
+        <a-button
+          type="primary"
+          shape="round"
+          size="large"
+          class="login-form-button"
+          @click="handleLogin"
+        >
           登录
         </a-button>
       </div>
@@ -21,12 +37,38 @@
 </template>
 
 <script>
+import { message } from "ant-design-vue";
+
 export default {
   name: "Login",
   data() {
     return {
       appTitle: process.env.VUE_APP_TITLE,
+      username: "admin",
+      password: "123456",
     };
+  },
+  methods: {
+    handleLogin() {
+      if (!this.username) {
+        message.warning("The account cannot be empty!");
+        return;
+      }
+
+      if (!this.password) {
+        message.warning("The password cannot be empty!");
+        return;
+      }
+
+      if (this.username && this.password) {
+        if (this.username === "admin" && this.password === "123456") {
+          sessionStorage.setItem("userLoginStatus", true);
+          this.$router.push("/index");
+        } else {
+          message.error("The error username or password!");
+        }
+      }
+    },
   },
 };
 </script>
