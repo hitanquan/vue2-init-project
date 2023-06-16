@@ -76,10 +76,14 @@ export default {
 <style scoped>
 #login-bg {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: no-repeat url(../../assets/login_bg.jpg);
-  background-size: 100% 100%;
-  background-attachment: fixed;
-  height: 740px;
+  background-size: cover;
+  background-position: center center;
 }
 .login-form {
   display: flex;
@@ -87,6 +91,8 @@ export default {
   width: 800px;
   height: 400px;
   border: 1px solid rgb(77, 88, 119);
+  color: #fff;
+  text-align: center;
 }
 .login-form-left {
   display: flex;
@@ -94,7 +100,6 @@ export default {
   justify-content: center;
   width: 40%;
   height: 100%;
-  opacity: 0.4;
   background-color: #1890ff;
 }
 .login-form-left div {
