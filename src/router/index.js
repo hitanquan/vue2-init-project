@@ -1,17 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Index from "@/pages/home/Index.vue";
+import Home from "@/pages/home/Home.vue";
 import Login from "@/pages/user/Login.vue";
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+const myRouter = new VueRouter({
   mode: "history",
   routes: [
     {
-      path: "/index",
-      component: Index,
-      // redirect: "/user/login",
+      path: "/home",
+      component: Home,
     },
     {
       path: "/user/login",
@@ -20,11 +19,12 @@ const router = new VueRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  let userLoginStatus = sessionStorage.getItem("userLoginStatus");
+myRouter.beforeEach((to, from, next) => {
+  const loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"));
+  const userLoginStatus = loginUserInfo?.userLoginStatus;
 
   if (userLoginStatus && to.path === "/user/login") {
-    next("/index");
+    next("/home");
     return;
   }
 
@@ -39,4 +39,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-export default router;
+export default myRouter;

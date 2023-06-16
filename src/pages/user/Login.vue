@@ -62,8 +62,12 @@ export default {
 
       if (this.username && this.password) {
         if (this.username === "admin" && this.password === "123456") {
-          sessionStorage.setItem("userLoginStatus", true);
-          this.$router.push("/index");
+          const loginUserInfo = {
+            userLoginStatus: true,
+            userLoginName: this.username,
+          };
+          sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
+          this.$router.push("/home");
         } else {
           message.error("The error username or password!");
         }
