@@ -1,0 +1,75 @@
+<template>
+  <a-layout-sider v-model="collapsed" collapsible>
+    <div class="logo">
+      <img src="@/assets/logo.png" />
+      <span v-show="isVisible">后台管理系统</span>
+    </div>
+    <a-menu v-for="item in menuList" theme="dark" :default-selected-keys="['/home']" mode="inline">
+      <a-menu-item v-if="!item.children && !item.hidden" :key="item.path">
+        <a-icon :type="item.icon" />
+        <span>{{ item.meta.title }}</span>
+      </a-menu-item>
+
+      <a-sub-menu v-if="item.children" :key="item.path">
+        <span slot="title">
+          <a-icon :type="item.icon" />
+          <span>{{ item.meta?.title }}</span>
+        </span>
+        <template v-for="subItem in item.children">
+          <a-menu-item v-if="!subItem.children && !subItem.hidden" :key="subItem.path">
+            <span>{{ subItem.meta.title }}</span>
+          </a-menu-item>
+        </template>
+      </a-sub-menu>
+    </a-menu>
+  </a-layout-sider>
+</template>
+
+<script>
+import { constantRoutes } from "@/router";
+
+export default {
+  name: "SideNavBar",
+  data() {
+    return {
+      collapsed: true,
+      isVisible: false,
+      menuList: constantRoutes,
+    };
+  },
+  created() {
+    this.test();
+  },
+  watch: {
+    // 监听 collapsed 属性值的变化，侧边收缩导航栏的展开、收缩，对应网站标题的显示和隐藏
+    collapsed(newValue, oldValue) {
+      this.collapsed = newValue;
+      this.isVisible = oldValue;
+    },
+  },
+  methods: {
+    test() {
+      console.log(constantRoutes);
+    },
+  },
+};
+</script>
+
+<style>
+#components-layout-demo-side .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin: 10px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.logo span {
+  color: #fff;
+}
+</style>
