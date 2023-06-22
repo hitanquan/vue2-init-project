@@ -4,6 +4,9 @@ import Home from "@/pages/home/Home.vue";
 import Login from "@/pages/user/Login.vue";
 import NotFound from "@/pages/404/NotFound.vue";
 import Register from "@/pages/user/Register.vue";
+import SysMenuPage from "@/pages/sys/SysMenuPage.vue";
+import SysDictPage from "@/pages/sys/SysDictPage.vue";
+import SysRolePage from "@/pages/sys/SysRolePage.vue";
 
 Vue.use(VueRouter);
 
@@ -41,14 +44,14 @@ export const constantRoutes = [
     children: [
       {
         path: "/menu",
-        component: Home,
+        component: SysMenuPage,
         meta: {
           title: "菜单管理",
         },
       },
       {
         path: "/dict",
-        component: Home,
+        component: SysDictPage,
         meta: {
           title: "数据字典",
         },
@@ -65,7 +68,7 @@ export const constantRoutes = [
     children: [
       {
         path: "/role",
-        component: Home,
+        component: SysRolePage,
         meta: {
           title: "角色管理",
         },

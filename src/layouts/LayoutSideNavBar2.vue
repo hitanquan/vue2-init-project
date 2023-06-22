@@ -5,9 +5,13 @@
       <span v-show="isVisible">后台管理系统</span>
     </div>
     <a-menu v-for="item in menuList" theme="dark" :default-selected-keys="['/home']" mode="inline">
-      <a-menu-item v-if="!item.children && !item.hidden" :key="item.path">
+      <a-menu-item
+        v-if="!item.children && !item.hidden"
+        :key="item.path"
+        @click="handleMenuClick(item.path)"
+      >
         <a-icon :type="item.icon" />
-        <span>{{ item.meta.title }}</span>
+        <span> {{ item.meta.title }}</span>
       </a-menu-item>
 
       <a-sub-menu v-if="item.children" :key="item.path">
@@ -16,7 +20,11 @@
           <span>{{ item.meta?.title }}</span>
         </span>
         <template v-for="subItem in item.children">
-          <a-menu-item v-if="!subItem.children && !subItem.hidden" :key="subItem.path">
+          <a-menu-item
+            v-if="!subItem.children && !subItem.hidden"
+            :key="subItem.path"
+            @click="handleMenuClick(subItem.path)"
+          >
             <span>{{ subItem.meta.title }}</span>
           </a-menu-item>
         </template>
@@ -49,7 +57,10 @@ export default {
   },
   methods: {
     test() {
-      console.log(constantRoutes);
+      console.log(this.$router);
+    },
+    handleMenuClick(path) {
+      this.$router.push(path);
     },
   },
 };

@@ -9,7 +9,8 @@
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb>
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-          Bill is a cat.
+          <router-view />
+          <index v-if="this.$route.path === '/home'" />
         </div>
       </a-layout-content>
       <layout-footer />
@@ -17,14 +18,17 @@
   </a-layout>
 </template>
 <script>
-import LayoutSideNavBar from "@/layouts/LayoutSideNavBar";
-import LayoutHeadNavBar from "@/layouts/LayoutHeadNavBar";
-import LayoutFooter from "@/layouts/LayoutFooter";
+import LayoutSideNavBar from "@/layouts/LayoutSideNavBar2.vue";
+import LayoutHeadNavBar from "@/layouts/LayoutHeadNavBar.vue";
+import LayoutFooter from "@/layouts/LayoutFooter.vue";
+import Index from "@/pages/home/Index.vue";
+
 export default {
   components: {
     LayoutSideNavBar,
     LayoutHeadNavBar,
     LayoutFooter,
+    Index,
   },
   data() {
     return {};
