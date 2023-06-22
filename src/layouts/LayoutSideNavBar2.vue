@@ -4,7 +4,13 @@
       <img src="@/assets/logo.png" />
       <span v-show="isVisible">后台管理系统</span>
     </div>
-    <a-menu v-for="item in menuList" theme="dark" :default-selected-keys="['/home']" mode="inline">
+    <a-menu
+      v-for="item in menuList"
+      :key="item.path"
+      theme="dark"
+      :default-selected-keys="['/home']"
+      mode="inline"
+    >
       <a-menu-item
         v-if="!item.children && !item.hidden"
         :key="item.path"
@@ -46,7 +52,7 @@ export default {
     };
   },
   created() {
-    this.test();
+    // this.test();
   },
   watch: {
     // 监听 collapsed 属性值的变化，侧边收缩导航栏的展开、收缩，对应网站标题的显示和隐藏

@@ -7,7 +7,6 @@ import Register from "@/pages/user/Register.vue";
 import SysMenuPage from "@/pages/sys/SysMenuPage.vue";
 import SysDictPage from "@/pages/sys/SysDictPage.vue";
 import SysRolePage from "@/pages/sys/SysRolePage.vue";
-
 Vue.use(VueRouter);
 
 export const constantRoutes = [
@@ -43,14 +42,14 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: "/menu",
+        path: "/sys/menu",
         component: SysMenuPage,
         meta: {
           title: "菜单管理",
         },
       },
       {
-        path: "/dict",
+        path: "/sys/dict",
         component: SysDictPage,
         meta: {
           title: "数据字典",
@@ -67,7 +66,7 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: "/role",
+        path: "/user/role",
         component: SysRolePage,
         meta: {
           title: "角色管理",
@@ -84,15 +83,14 @@ const myRouter = new VueRouter({
 
 myRouter.beforeEach((to, from, next) => {
   const loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"));
-  const userLoginStatus = loginUserInfo?.userLoginStatus;
 
-  if (userLoginStatus && to.path === "/user/login") {
+  if (loginUserInfo && to.path === "/user/login") {
     next("/home");
     return;
   }
 
   if (to.path !== "/user/login") {
-    if (userLoginStatus) {
+    if (loginUserInfo) {
       next();
     } else {
       next("/user/login");

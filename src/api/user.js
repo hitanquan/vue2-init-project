@@ -1,12 +1,28 @@
-import axios from "axios";
+import axios from "./myAxios";
 
-const getCurrentUser = axios
-  .get("/api/user/current")
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
+export function getCurrentUser() {
+  return axios
+    .get("/user/current")
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+// 登录方法
+export function login(userAccount, userPassword) {
+  const data = {
+    userAccount,
+    userPassword,
+  };
+  return axios({
+    url: "/user/login",
+    headers: {
+      isToken: false,
+    },
+    method: "post",
+    data: data,
   });
-
-export default getCurrentUser;
+}

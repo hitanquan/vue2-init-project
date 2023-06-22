@@ -6,16 +6,11 @@
         <div>{{ appTitle }}</div>
       </div>
       <div class="login-form-right">
-        <a-input
-          placeholder="Input account"
-          size="large"
-          class="login-form-input"
-          v-model="username"
-        >
+        <a-input placeholder="请输入账号" size="large" class="login-form-input" v-model="username">
           <a-icon slot="prefix" type="user" />
         </a-input>
         <a-input-password
-          placeholder="Input password"
+          placeholder="请输入密码"
           size="large"
           class="login-form-input"
           v-model="password"
@@ -38,39 +33,39 @@
 
 <script>
 import { message } from "ant-design-vue";
+import { login } from "@/api/user";
 
 export default {
   name: "Login",
   data() {
     return {
       appTitle: process.env.VUE_APP_TITLE,
-      username: "admin",
-      password: "123456",
+      username: "wangwu",
+      password: "wangwu2023.com",
     };
   },
   methods: {
     handleLogin() {
       if (!this.username) {
-        message.warning("The account cannot be empty!");
+        message.warning("账号不能为空!");
         return;
       }
 
       if (!this.password) {
-        message.warning("The password cannot be empty!");
+        message.warning("密码不能为空!");
         return;
       }
 
       if (this.username && this.password) {
-        if (this.username === "admin" && this.password === "123456") {
-          const loginUserInfo = {
-            userLoginStatus: true,
-            userLoginName: this.username,
-          };
-          sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
-          this.$router.push("/home");
-        } else {
-          message.error("The error username or password!");
-        }
+        login(this.username, this.password).then((res) => {
+          const loginUserInfo = res.data;
+          if (loginUserInfo) {
+            sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
+            this.$router.push("/home");
+            return;
+          }
+          message.error("用户名或密码错误!");
+        });
       }
     },
   },

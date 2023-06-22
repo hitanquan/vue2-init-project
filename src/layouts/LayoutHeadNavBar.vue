@@ -34,9 +34,8 @@ export default {
   name: "HeadNavBar",
   computed: {
     currentUserName() {
-      // todo 下面这行代码获取不到值
-      // return sessionStorage.getItem("loginUserInfo").userLoginName;
-      return "admin";
+      const loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"));
+      return loginUserInfo.userAccount;
     },
   },
   methods: {
