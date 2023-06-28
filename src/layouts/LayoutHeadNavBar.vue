@@ -35,7 +35,7 @@ export default {
   computed: {
     currentUserName() {
       const loginUserInfo = JSON.parse(sessionStorage.getItem("loginUserInfo"));
-      return loginUserInfo.userAccount;
+      return loginUserInfo.username;
     },
   },
   methods: {

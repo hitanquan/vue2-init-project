@@ -33,7 +33,7 @@
 
 <script>
 import { message } from "ant-design-vue";
-import { login } from "@/api/user";
+import { login } from "../../../mock/user";
 
 export default {
   name: "Login",
@@ -57,15 +57,15 @@ export default {
       }
 
       if (this.username && this.password) {
-        login(this.username, this.password).then((res) => {
+        const res = login(this.username, this.password);
+        if (res.success) {
+          message.success(res.message);
           const loginUserInfo = res.data;
-          if (loginUserInfo) {
-            sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
-            this.$router.push("/home");
-            return;
-          }
-          message.error("用户名或密码错误!");
-        });
+          sessionStorage.setItem("loginUserInfo", JSON.stringify(loginUserInfo));
+          this.$router.push("/home");
+          return;
+        }
+        message.error(res.message);
       }
     },
   },
