@@ -7,6 +7,8 @@ import Register from "@/pages/user/Register.vue";
 import SysMenuPage from "@/pages/sys/SysMenuPage.vue";
 import SysDictPage from "@/pages/sys/SysDictPage.vue";
 import SysRolePage from "@/pages/sys/SysRolePage.vue";
+import SysUserListPage from "@/pages/sys/SysUserListPage.vue";
+
 Vue.use(VueRouter);
 
 export const constantRoutes = [
@@ -70,6 +72,13 @@ export const constantRoutes = [
         component: SysRolePage,
         meta: {
           title: "角色管理",
+        },
+      },
+      {
+        path: "/user/list",
+        component: SysUserListPage,
+        meta: {
+          title: "用户列表",
         },
       },
     ],
