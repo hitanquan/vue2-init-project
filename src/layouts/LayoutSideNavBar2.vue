@@ -8,7 +8,7 @@
       v-for="item in menuList"
       :key="item.path"
       theme="dark"
-      :default-selected-keys="['/home']"
+      :selectedKeys="[currentSelectMenuKeys]"
       mode="inline"
     >
       <a-menu-item
@@ -23,7 +23,7 @@
       <a-sub-menu v-if="item.children" :key="item.path">
         <span slot="title">
           <a-icon :type="item.icon" />
-          <span>{{ item.meta?.title }}</span>
+          <span>{{ item.meta.title }}</span>
         </span>
         <template v-for="subItem in item.children">
           <a-menu-item
@@ -49,6 +49,7 @@ export default {
       collapsed: true,
       isVisible: false,
       menuList: constantRoutes,
+      currentSelectMenuKeys: this.$router.currentRoute.path,
     };
   },
   created() {
@@ -67,6 +68,7 @@ export default {
     },
     handleMenuClick(path) {
       this.$router.push(path);
+      this.currentSelectMenuKeys = path;
     },
   },
 };
