@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .user-avatar {
   position: absolute;
   right: 40px;

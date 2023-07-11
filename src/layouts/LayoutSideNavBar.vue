@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #components-layout-demo-side .logo {
   display: flex;
   justify-content: center;

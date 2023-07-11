@@ -46,8 +46,8 @@ export default {
   name: "SideNavBar",
   data() {
     return {
-      collapsed: true,
-      isVisible: false,
+      collapsed: false,
+      isVisible: true,
       menuList: constantRoutes,
       currentSelectMenuKeys: this.$router.currentRoute.path,
     };
@@ -74,7 +74,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #components-layout-demo-side .logo {
   display: flex;
   justify-content: center;
