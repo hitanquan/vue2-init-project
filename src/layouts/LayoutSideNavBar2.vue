@@ -1,13 +1,13 @@
 <template>
-  <a-layout-sider v-model="collapsed" collapsible>
+  <a-layout-sider v-model="collapsed" collapsible theme="light">
     <div class="logo">
-      <img src="@/assets/logo.png" />
+      <img src="@/assets/logo.svg" />
       <span v-show="isVisible">后台管理系统</span>
     </div>
     <a-menu
       v-for="item in menuList"
       :key="item.path"
-      theme="dark"
+      theme="light"
       :selectedKeys="[currentSelectMenuKeys]"
       mode="inline"
     >
@@ -84,11 +84,14 @@ export default {
 }
 
 .logo img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .logo span {
-  color: #fff;
+  margin-left: 10px;
+  color: #1890ff;
+  font-weight: bold;
+  font-size: 16px;
 }
 </style>
