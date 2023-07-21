@@ -1,7 +1,7 @@
 <template>
   <a-layout-sider v-model="collapsed" collapsible>
     <div class="logo">
-      <img src="@/assets/logo.png" />
+      <img src="@/assets/logo.svg" />
       <span v-show="isVisible">后台管理系统</span>
     </div>
     <a-menu theme="dark" :default-selected-keys="['1']" mode="inline">
@@ -23,6 +23,11 @@
         <span slot="title"><a-icon type="team" /><span>Team</span></span>
         <a-menu-item key="6"> Team 1 </a-menu-item>
         <a-menu-item key="8"> Team 2 </a-menu-item>
+        <a-sub-menu key="sub22">
+          <span slot="title"><a-icon type="team" /><span>Team1111</span></span>
+          <a-menu-item key="66"> Team 111 </a-menu-item>
+          <a-menu-item key="88"> Team 222 </a-menu-item>
+        </a-sub-menu>
       </a-sub-menu>
       <a-menu-item key="9">
         <a-icon type="file" />
@@ -66,6 +71,9 @@ export default {
 }
 
 .logo span {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 16px;
   color: #fff;
 }
 </style>
